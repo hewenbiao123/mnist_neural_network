@@ -6,5 +6,8 @@ __pycache__/
 # Dataset downloaded by torchvision
 data/MNIST/
 
+# Cached preprocessed tensors
+data/mnist_processed.pt
+
 # IDE
 .vscode/
