@@ -14,12 +14,12 @@
 
 ## About This Project
 
-This repository is the PyTorch port of [mnist_neural_network_v3](https://github.com/hewenbiao123/mnist_neural_network_v3). The **network architecture and hyperparameters are identical**; the only change is the underlying implementation, which switches from "pure NumPy from scratch" to "the PyTorch framework".
+This directory is the **v4** version inside the merged [mnist_neural_network](https://github.com/hewenbiao123/mnist_neural_network) repository (originally the standalone `mnist_neural_network_v4` repo, with its full commit history preserved). It is the PyTorch port of [v3](https://github.com/hewenbiao123/mnist_neural_network/tree/main/v3). The **network architecture and hyperparameters are identical**; the only change is the underlying implementation, which switches from "pure NumPy from scratch" to "the PyTorch framework".
 
 | Version | Implementation | Gradient computation | Purpose |
 |---------|----------------|----------------------|---------|
-| [v2](https://github.com/hewenbiao123/mnist_neural_network_v2) | Pure NumPy, procedural | Numerical differentiation | Understand the concept of gradients |
-| [v3](https://github.com/hewenbiao123/mnist_neural_network_v3) | Pure NumPy, modular layers | Manual backpropagation | Master the principle of backpropagation |
+| [v2](https://github.com/hewenbiao123/mnist_neural_network/tree/main/v2) | Pure NumPy, procedural | Numerical differentiation | Understand the concept of gradients |
+| [v3](https://github.com/hewenbiao123/mnist_neural_network/tree/main/v3) | Pure NumPy, modular layers | Manual backpropagation | Master the principle of backpropagation |
 | **v4** | **PyTorch framework** | **autograd automatic differentiation** | **Master the framework API while understanding what happens underneath** |
 
 **Why v4?** After manually implementing `forward()` / `backward()` for `Affine`, `ReLU`, and `SoftmaxWithLoss` in v3, reimplementing the same network in PyTorch makes the gap between "from scratch" and "framework" concrete: `nn.Linear` maps to `Affine`, `nn.ReLU` to `Relu`, `nn.CrossEntropyLoss` to `SoftmaxWithLoss`, and `loss.backward()` to calling `backward()` layer by layer in v3.
@@ -155,6 +155,8 @@ def evaluate(model, loader, device):
 
 ## Project Structure
 
+All paths below are relative to `v4/`.
+
 - `data/mnist_loader.py` — Dataset: torchvision download + DataLoader
 - `models/two_layer_net.py` — Model: the network defined with `nn.Module`
 - `train.py` — Trainer: training loop and evaluation
@@ -218,8 +220,8 @@ def evaluate(model, loader, device):
 
 ```bash
 # Clone the repository
-git clone https://github.com/hewenbiao123/mnist_neural_network_v4.git
-cd mnist_neural_network_v4
+git clone https://github.com/hewenbiao123/mnist_neural_network.git
+cd mnist_neural_network/v4
 
 # Install dependencies (CPU example)
 pip install torch torchvision

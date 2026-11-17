@@ -2,6 +2,8 @@
 
 基于纯 NumPy 实现的前馈神经网络，用于 MNIST 手写数字识别。不使用 TensorFlow、PyTorch 等深度学习框架，仅依赖 NumPy 从零搭建神经网络，适合理解神经网络底层原理。
 
+> **仓库说明：** 本目录是 [mnist_neural_network](https://github.com/hewenbiao123/mnist_neural_network) 合并仓库中的 **v1** 版本（原独立仓库 `mnist_neural_network_v1`），保留了原有提交历史。
+
 ## 网络架构
 
 | 层 | 神经元数 | 激活函数 |
@@ -14,7 +16,7 @@
 ## 项目结构
 
 ```
-mnist_neural_network_v1/
+v1/
 ├── neural_network.py          # 主入口：加载权重，执行推理
 ├── sample_weight.pkl          # 预训练好的模型权重
 ├── common/
@@ -40,7 +42,7 @@ pip install numpy pillow
 ## 快速开始
 
 ```bash
-cd mnist_neural_network_v1
+cd mnist_neural_network/v1
 python neural_network.py
 ```
 

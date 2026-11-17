@@ -2,6 +2,8 @@
 
 基于 NumPy 从零实现的两层全连接神经网络，用于 MNIST 手写数字识别。所有组件（数据加载、激活函数、损失函数、梯度计算、参数更新、训练循环）均不依赖 PyTorch/TensorFlow 等深度学习框架。
 
+> **仓库说明：** 本目录是 [mnist_neural_network](https://github.com/hewenbiao123/mnist_neural_network) 合并仓库中的 **v2** 版本（原独立仓库 `mnist_neural_network_v2`），保留了原有提交历史。
+
 ## 目录
 
 - [项目结构](#项目结构)
@@ -16,7 +18,7 @@
 ## 项目结构
 
 ```
-mnist_neural_network_v2/
+v2/
 ├── data/
 │   └── mnist_loader.py   # 数据集：下载、解析二进制 IDX 文件、pickle 持久化
 ├── models/
@@ -204,6 +206,7 @@ pip install numpy
 ### 运行
 
 ```bash
+cd mnist_neural_network/v2
 python main.py
 ```
 

@@ -1,6 +1,6 @@
 # MNIST 两层神经网络（PyTorch）实现指南
 
-> 本文档面向**完全没接触过 PyTorch** 的学习者。目标是让你自己动手，从零写出 `mnist_neural_network_v4` 项目中的 5 个 Python 文件。
+> 本文档面向**完全没接触过 PyTorch** 的学习者。目标是让你自己动手，从零写出 `v4` 项目中的 5 个 Python 文件。
 >
 > 建议顺序：先完成第 0 节的 **conda 环境准备**，再读完第 1、2、3 节，然后按第 4 节的顺序**逐个文件**实现，每写完一个就做一次「自测」，通过后再写下一个。卡住时再看第 6 节的参考答案。
 
@@ -215,7 +215,7 @@ print(images.shape, labels.shape)   # (100,1,28,28)  (100,)
 项目的目录结构如下（`data/`、`models/`、`utils/` 三个包各自放不同职责的代码）：
 
 ```text
-mnist_neural_network_v4/
+v4/
 ├── data/
 │   └── mnist_loader.py      # 数据加载：下载数据集 + 构造 DataLoader
 ├── models/
@@ -237,7 +237,7 @@ mnist_neural_network_v4/
 | `utils/trainer.py` | 提供 `train`、`evaluate`、`inference` 三个函数 | `config`、`torch` |
 | `main.py` | 编排整个流程 | 以上全部 |
 
-> 关于导入：`data/`、`models/`、`utils/` 目录下可以不放 `__init__.py`（Python 3 支持"命名空间包"）。只要在项目根目录 `mnist_neural_network_v4/` 下运行 `python main.py`，`from data.mnist_loader import ...` 就能正常工作。
+> 关于导入：`data/`、`models/`、`utils/` 目录下可以不放 `__init__.py`（Python 3 支持"命名空间包"）。只要在项目根目录 `v4/` 下运行 `python main.py`，`from data.mnist_loader import ...` 就能正常工作。
 
 ---
 
@@ -548,7 +548,7 @@ python main.py
    保持 `num_workers` 为默认值 0 即可（本项目的 loader 没传 `num_workers`，就是 0）。
 
 5. **`ModuleNotFoundError: No module named 'config'`**
-   要在项目根目录 `mnist_neural_network_v4/` 下运行，而不是在 `data/` 或 `utils/` 子目录里运行。
+   要在项目根目录 `v4/` 下运行，而不是在 `data/` 或 `utils/` 子目录里运行。
 
 6. **训练很慢（几分钟才能跑完）**
    最常见的元凶是**逐样本预处理**：用 `transforms.ToTensor()` 处理 MNIST，会让 DataLoader 每取一个样本都走一遍 Python 层的 `__getitem__` + 转换，60000 样本 × 17 epoch = 100 多万次调用，把训练拖慢到几分钟。改成"一次性向量化转成 Tensor + `TensorDataset`"后，应该十几秒就能跑完。详见 4.2 节。

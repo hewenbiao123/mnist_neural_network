@@ -15,9 +15,11 @@
 
 > **English:** A two-layer neural network for MNIST handwritten digit recognition, built from scratch using only NumPy. Compared to v2, the key upgrade is **replacing numerical differentiation with Backpropagation** — achieving ~40,000× speedup. No PyTorch / TensorFlow dependencies.
 
+> **仓库说明：** 本目录是 [mnist_neural_network](https://github.com/hewenbiao123/mnist_neural_network) 合并仓库中的 **v3** 版本（原独立仓库 `mnist_neural_network_v3`），保留了原有提交历史。
+
 ## 关于本项目
 
-本仓库是 [mnist_neural_network_v2](https://github.com/hewenbiao123/mnist_neural_network_v2) 的升级版本，属于"从零实现深度学习"系列项目。目标是通过纯 NumPy 手动构建神经网络的每一部分（数据加载、层抽象、前向传播、反向传播、梯度下降），深入理解深度学习底层原理，而非仅仅调用框架 API。
+本目录是同一仓库中 [v2](https://github.com/hewenbiao123/mnist_neural_network/tree/main/v2) 的升级版本，属于"从零实现深度学习"系列项目。目标是通过纯 NumPy 手动构建神经网络的每一部分（数据加载、层抽象、前向传播、反向传播、梯度下降），深入理解深度学习底层原理，而非仅仅调用框架 API。
 
 **适合人群：** 正在学习深度学习基础、希望理解反向传播数学原理、准备面试或教学演示的开发者。
 
@@ -148,7 +150,7 @@ $$
 ## 项目结构
 
 ```
-mnist_neural_network_v3/
+v3/
 ├── data/
 │   └── mnist_loader.py      # 数据集：下载、解析二进制 IDX 文件、pickle 持久化
 ├── models/
@@ -291,8 +293,8 @@ self.lastLayer = SoftmaxWithLoss()
 
 ```bash
 # 克隆仓库
-git clone https://github.com/hewenbiao123/mnist_neural_network_v3.git
-cd mnist_neural_network_v3
+git clone https://github.com/hewenbiao123/mnist_neural_network.git
+cd mnist_neural_network/v3
 
 # 安装依赖
 pip install numpy
@@ -389,11 +391,11 @@ self.layers.append(Sigmoid())
 
 ### 如何对比 v2 的数值微分模式？
 
-v2 代码位于独立仓库 [mnist_neural_network_v2](https://github.com/hewenbiao123/mnist_neural_network_v2)，可克隆后运行：
+v2 代码位于同一仓库的 [v2](https://github.com/hewenbiao123/mnist_neural_network/tree/main/v2) 目录，可直接切换过去运行：
 
 ```bash
-git clone https://github.com/hewenbiao123/mnist_neural_network_v2.git
-cd mnist_neural_network_v2
+git clone https://github.com/hewenbiao123/mnist_neural_network.git
+cd mnist_neural_network/v2
 python main.py
 ```
 
