@@ -75,3 +75,6 @@ class SoftmaxWithLoss:
             dZ[np.arange(batch_size), self.Y.astype(int)] -= np.float32(1) # dZ[i][Y[i]] -= 1
             dZ = dZ / np.float32(batch_size)
         return dZ
+
+
+
