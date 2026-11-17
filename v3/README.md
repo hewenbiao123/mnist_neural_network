@@ -15,7 +15,7 @@
 
 > **English:** A two-layer neural network for MNIST handwritten digit recognition, built from scratch using only NumPy. Compared to v2, the key upgrade is **replacing numerical differentiation with Backpropagation** — achieving ~40,000× speedup. No PyTorch / TensorFlow dependencies.
 
-> **仓库说明：** 本目录是 [mnist_neural_network](https://github.com/hewenbiao123/mnist_neural_network) 合并仓库中的 **v3** 版本（原独立仓库 `mnist_neural_network_v3`），保留了原有提交历史。
+> **本目录：** 仓库 [mnist_neural_network](https://github.com/hewenbiao123/mnist_neural_network) 中的 **v3** 版本，全部版本与学习路径见[仓库首页](../README.md)。
 
 ## 关于本项目
 

@@ -1,8 +1,6 @@
 # MNIST 手写数字识别 · 从零实现到框架
 
-本仓库把原先分散的四个独立仓库（`mnist_neural_network_v1` ~ `mnist_neural_network_v4`）合并为一个仓库，按版本收录在 `v1/` ~ `v4/` 四个子目录中。
-
-四个版本是同一主题（MNIST 手写数字识别）上递进式的实现：从"加载预训练权重做纯 NumPy 推理"，到"纯 NumPy 手写训练"，再到"手动反向传播"，最后"用 PyTorch 复刻同一网络"。每个子目录都保留了原有代码、文档，以及原仓库的完整提交历史（通过 `git subtree` 迁移）。
+用同一个任务（MNIST 手写数字识别）串联四种实现：纯 NumPy 推理、纯 NumPy 数值微分训练、纯 NumPy 反向传播、PyTorch 框架实现。既可作为神经网络的入门学习路径，也便于对照"从零手写"与"框架封装"之间的差异。
 
 ## 版本总览
 
@@ -50,8 +48,20 @@ mnist_neural_network/
 
 ## 快速开始
 
+### 环境依赖
+
+- Python 3.8+（v4 需要 3.10+）
+- v1 / v2 / v3：仅 NumPy
+- v4：PyTorch 2.x + torchvision（CPU 即可运行）
+
 ```bash
-# 克隆合并后的仓库
+pip install numpy              # v1 / v2 / v3
+pip install torch torchvision  # v4
+```
+
+### 运行
+
+```bash
 git clone https://github.com/hewenbiao123/mnist_neural_network.git
 cd mnist_neural_network
 
@@ -68,23 +78,23 @@ cd v3 && python main.py
 cd v4 && python main.py
 ```
 
-依赖安装：
+每个版本都在**自己的目录内**运行入口脚本。首次运行会自动下载 MNIST 数据集（约 11MB）并缓存到本地，之后的运行直接读取缓存。
 
-```bash
-pip install numpy            # v1 / v2 / v3
-pip install torch torchvision  # v4
-```
+## 学习路径
 
-> 每个版本都在**自己的目录内**运行入口脚本。数据集首次运行时会自动下载（约 11MB），之后的缓存文件已被 `.gitignore` 排除，不会进入版本控制。
+- **v1 — 跑通推理**：加载预训练权重，完成一次前向传播与批量推理，先建立"网络输入输出"的直观认识。
+- **v2 — 理解梯度**：用纯 NumPy 补齐完整训练流程（前向传播、交叉熵损失、数值梯度、SGD 更新）。数值微分要对每个参数做两次前向传播，速度极慢，但能把"梯度"讲清楚。
+- **v3 — 掌握反向传播**：把数值微分换成反向传播，训练速度提升约 4 万倍；同时引入 `Affine` / `Relu` / `SoftmaxWithLoss` 等层抽象，每层封装 `forward()` / `backward()`，隐藏层激活由 Sigmoid 改为 ReLU。
+- **v4 — 熟悉框架**：网络结构与超参数不变，改用 PyTorch 实现——`nn.Linear` 对应 `Affine`，`nn.ReLU` 对应 `Relu`，`nn.CrossEntropyLoss` 对应 `SoftmaxWithLoss`，`loss.backward()` 对应 v3 中逐层调用的 `backward()`。[GUIDE.md](v4/GUIDE.md) 提供了从零实现 v4 各文件的逐步教程。
 
-## 版本演进
+## 数据集
 
-- **v1 → v2**：从只有推理，到用纯 NumPy 实现完整训练流程（前向传播、交叉熵损失、数值梯度、SGD 更新）。数值微分要对每个参数做两次前向传播，速度极慢，目的是讲清"梯度"是什么。
-- **v2 → v3**：把数值微分换成反向传播，训练速度提升约 4 万倍；同时引入 `Affine` / `Relu` / `SoftmaxWithLoss` 等层抽象，每层封装 `forward()` / `backward()`，隐藏层激活由 Sigmoid 改为 ReLU。
-- **v3 → v4**：网络结构与超参数不变，改用 PyTorch 实现——`nn.Linear` 对应 `Affine`，`nn.ReLU` 对应 `Relu`，`nn.CrossEntropyLoss` 对应 `SoftmaxWithLoss`，`loss.backward()` 对应 v3 中逐层调用的 `backward()`，便于对照理解框架到底做了什么。
+使用 [MNIST](http://yann.lecun.com/exdb/mnist/)：60,000 张训练图 + 10,000 张测试图，均为 28×28 灰度图，10 个类别（数字 0–9）。
 
-## 关于合并
+首次运行自动下载并缓存在各版本的数据目录（`v1/dataset/`、`v2/data/`、`v3/data/`、`v4/data/`）。缓存与原始数据文件均已通过 `.gitignore` 排除，不会进入版本控制；若网络受限，可手动下载 4 个 IDX 文件放入对应目录，各版本 README 中有具体说明。
 
-- 四个版本原为四个独立仓库，现已通过 `git subtree` 迁入本仓库的 `v1/` ~ `v4/` 子目录，各自的提交历史完整保留。
-- 各版本 README 中的目录名、克隆命令和跨版本链接已更新为合并后的路径；原独立仓库不再作为主要入口。
-- 提交历史中早于合并的部分仍是原仓库的提交，因此部分早期提交的路径不带 `vN/` 前缀。
+## 参考资源
+
+- [Deep Learning from Scratch（斋藤康毅）](https://github.com/oreilly-japan/deep-learning-from-scratch) — 本项目主要参考书籍
+- [MNIST 数据集](http://yann.lecun.com/exdb/mnist/) — Yann LeCun 提供的手写数字数据集
+- [PyTorch 官方文档](https://pytorch.org/docs/stable/index.html) — v4 实现所用框架

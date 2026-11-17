@@ -14,7 +14,7 @@
 
 ## About This Project
 
-This directory is the **v4** version inside the merged [mnist_neural_network](https://github.com/hewenbiao123/mnist_neural_network) repository (originally the standalone `mnist_neural_network_v4` repo, with its full commit history preserved). It is the PyTorch port of [v3](https://github.com/hewenbiao123/mnist_neural_network/tree/main/v3). The **network architecture and hyperparameters are identical**; the only change is the underlying implementation, which switches from "pure NumPy from scratch" to "the PyTorch framework".
+This directory is the **v4** version in the [mnist_neural_network](https://github.com/hewenbiao123/mnist_neural_network) repository; see the [repository home](../README.md) for all versions and the learning path. It is the PyTorch port of [v3](https://github.com/hewenbiao123/mnist_neural_network/tree/main/v3). The **network architecture and hyperparameters are identical**; the only change is the underlying implementation, which switches from "pure NumPy from scratch" to "the PyTorch framework".
 
 | Version | Implementation | Gradient computation | Purpose |
 |---------|----------------|----------------------|---------|
