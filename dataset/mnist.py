@@ -150,7 +150,7 @@ def _test(idx: int):
     print(f"The label of image is {label}.")
     print(f"The shape of image is {image.shape}.")
     from PIL import Image
-    Image.fromarray(np.uint8(image)).show()
+    Image.fromarray(np.uint8(image)).show() # type:ignore
 
 if __name__ == '__main__':
     init_mnist()
