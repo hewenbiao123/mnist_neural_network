@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Dataset downloaded by torchvision
+data/MNIST/
+
+# Cached preprocessed tensors
+data/mnist_processed.pt
+
+# IDE
+.vscode/
