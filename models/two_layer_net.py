@@ -62,4 +62,5 @@ class TwoLayerNet:
         grads: dict[str, NDArray[np.float32]] = self.numerical_gradient(x, t)
         for key, value in grads.items():
             self.params[key] -= learning_rate * value
-        
+
+    
